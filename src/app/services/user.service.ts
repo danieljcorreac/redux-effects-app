@@ -14,7 +14,16 @@ export class UserService {
   getUsers() {
     return this
             .http
-            .get(`${this.baseUrl}/users?per_page=6`)
+            .get(`${this.baseUrl}/users?per_page=6&delay=2`)
+            .pipe(
+              map(request => request['data'])
+            );
+  }
+
+  getUser(id: string) {
+    return this
+            .http
+            .get(`${this.baseUrl}/users/${id}`)
             .pipe(
               map(request => request['data'])
             );
